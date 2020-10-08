@@ -58,5 +58,4 @@ This function requires `web3` to be passed in. It uses `truffle-contract` to ini
 This simply wraps `web3.eth.getAccounts` into a Promise so we can use it cleanly inside `Web3Container.js`. You probably don't need to change anything in this file.
 
 # Materiaul-UI
-https://material-ui.com/getting-started/templates/
-https://www.youtube.com/watch?v=pHclLuRolzE}}
+https://material-ui.com/getting-started/
