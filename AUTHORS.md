@@ -1,3 +1,3 @@
 Contributors 
 ------------------------------------
-* **[Bernard Choo](https://github.com/Bernardchoo)
+* [Bernard Choo](https://github.com/Bernardchoo)
