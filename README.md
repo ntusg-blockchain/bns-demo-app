@@ -15,9 +15,9 @@ Originated from : https://github.com/adrianmcli/truffle-next
 
 # Bns Demo App
 
-1st demo is a getter and setter of an integer. To demonstrate state changes.
-2nd demo is works by calling the 1st contract through another smart contract. To demonstrate Smart contract connectivity.
-3rd demo is about paying for attendance. To demonstrate the ability of smart contract holding funds , users can pay/ withdraw by calling function.
+- 1st demo is a getter and setter of an integer. To demonstrate state changes.
+- 2nd demo is works by calling the 1st contract through another smart contract. To demonstrate Smart contract connectivity.
+- 3rd demo is about paying for attendance. To demonstrate the ability of smart contract holding funds , users can pay/ withdraw by calling function.
 
 # Next.js client
 
