@@ -13,6 +13,12 @@ Originated from : https://github.com/adrianmcli/truffle-next
 
 ---
 
+# Bns Demo App
+
+- 1st demo is a getter and setter of an integer. To demonstrate state changes.
+- 2nd demo is works by calling the 1st contract through another smart contract. To demonstrate Smart contract connectivity.
+- 3rd demo is about paying for attendance. To demonstrate the ability of smart contract holding funds , users can pay/ withdraw by calling function.
+
 # Next.js client
 
 This is the frontend client for our dapp. It is built with Next.js and uses a render-prop pattern (via `lib/Web3Container.js`) so we can easily inject blockchain functionality (i.e. web3, accounts, and the contract instance) into each page.
@@ -51,37 +57,5 @@ This function requires `web3` to be passed in. It uses `truffle-contract` to ini
 
 This simply wraps `web3.eth.getAccounts` into a Promise so we can use it cleanly inside `Web3Container.js`. You probably don't need to change anything in this file.
 
-https://material-ui.com/getting-started/templates/
-
-
-// Handle Change and update to state.
-
-handleChange = input => e => {
-    this.setState({ [input]: e.target.value});
-};
-
-this.handleChange to access in local componenet.
-
-In other component.
-<TextField
-onChange={this.props.handleChange('stateVariable')}
-/>
-
-
-https://www.youtube.com/watch?v=pHclLuRolzE
-
-/*
-x = new BigNumber(1.23)
-x.shiftedBy(3)                      // '1230'
-x.shiftedBy(-3)                     // '0.00123'
-new BigNumber(userBalance).shiftedBy(-TokenDecimals).toString();
-*/
-removed in Layouts before 						<div
-							style={{
-								display: 'flex',
-								alignItems: 'center',
-								justifyContent: 'flex-end'
-							}}
-						>
-							<InvertColorsSharpIcon />
-							<Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
+# Materiaul-UI
+https://material-ui.com/getting-started/
