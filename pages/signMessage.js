@@ -18,7 +18,10 @@ class SignMessage extends React.Component {
 		web3: '',
 		transactionURL: '',
 		useraccount: '',
-		result: ''
+		result: '',
+		r: '',
+		s: '',
+		v: ''
 	};
 
 	async componentDidMount() {
@@ -41,11 +44,20 @@ class SignMessage extends React.Component {
 		this.setState({ loading: true });
 		const { web3 } = this.props;
 		try {
-			let signature = await web3.eth.personal.sign(this.state.setvalue, this.state.useraccount);
-			this.setState({ transactionURL: signature });
+			let signature2 = await web3.eth.personal.sign(this.state.setvalue, this.state.useraccount);
+			let signature = signature2.substr(2); //remove 0x
+			const r = '0x' + signature.slice(0, 64);
+			const s = '0x' + signature.slice(64, 128);
+			const v = '0x' + signature.slice(128, 130);
+			//alert(parseInt(v, 16)); check if 27 or 28.
+			this.setState({ r });
+			this.setState({ s });
+			this.setState({ v });
+			this.setState({ transactionURL: signature2 });
 		} catch (err) {
 			alert(`Error`);
 			this.setState({ loading: false });
+
 			return;
 		}
 
@@ -151,6 +163,12 @@ class SignMessage extends React.Component {
 								{' '}
 								{this.state.transactionURL}
 							</p>
+							<br />
+							r : {this.state.r}
+							<br />
+							s : {this.state.s}
+							<br />
+							v : {this.state.v}
 						</Typography>
 					)}
 					<br />
