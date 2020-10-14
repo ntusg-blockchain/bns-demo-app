@@ -57,8 +57,12 @@ const Layout = (props) => {
 	});
 
 	useEffect(() => {
-		setTimeout(() => setLoading(false), 1000);
+		let timer1 = setTimeout(() => setLoading(false), 1000);
+		return () => {
+			clearTimeout(timer1);
+		};
 	}, []);
+
 	if (loading == true) {
 		return (
 			<div
