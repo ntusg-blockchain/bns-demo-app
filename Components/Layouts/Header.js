@@ -94,8 +94,8 @@ const Header = () => {
 								<img
 									style={{
 										cursor: 'pointer',
-										maxWidth: '150px',
-										maxHeight: '250px'
+										height: '80px',
+										width: '210px'
 									}}
 									src="/static/Logo.png"
 									alt="image"
