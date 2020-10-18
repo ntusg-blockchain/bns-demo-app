@@ -16,6 +16,7 @@ import {
 	CardContent
 } from '@material-ui/core';
 import Layout from '../Components/Layout';
+import BacktoHomepage from '../Components/BacktoHomepage';
 
 import Metamask from '../Components/Metamask';
 
@@ -236,11 +237,7 @@ class Integerstorage extends React.Component {
 					<br />
 					<br />
 					<br />
-					<Typography variant="h6">
-						<Button href="/" disableRipple rel="noopener noreferrer">
-							<u style={{ textTransform: 'none' }}> Back to Homepage. </u>
-						</Button>
-					</Typography>
+					<BacktoHomepage />
 				</div>
 			</Layout>
 		);

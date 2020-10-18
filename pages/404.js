@@ -1,5 +1,6 @@
 import Layout from '../Components/Layout';
 import { Button, Container, Typography } from '@material-ui/core';
+import BacktoHomepage from '../Components/BacktoHomepage';
 
 export default function Custom404() {
 	return (
@@ -16,13 +17,7 @@ export default function Custom404() {
 				<br />
 				<br />
 				<br />
-				<Typography variant="h6">
-					<Button href="/" disableRipple rel="noopener noreferrer">
-						<h3>
-							<u style={{ textTransform: 'none' }}> Back to Dapps page</u>
-						</h3>
-					</Button>
-				</Typography>
+				<BacktoHomepage />
 			</Container>
 		</Layout>
 	);

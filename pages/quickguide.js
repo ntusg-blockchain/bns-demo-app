@@ -1,6 +1,7 @@
 import Layout from '../Components/Layout';
 import { Typography, Grid } from '@material-ui/core';
 import ReactPlayer from 'react-player';
+import BacktoHomepage from '../Components/BacktoHomepage';
 
 const Video = () => {
 	return (
@@ -24,6 +25,7 @@ const Video = () => {
 				Please skip through the 1st ( 2 minutes ) , If you see ‘User account not sign in’ on the top right panel
 				of our application.Click on it and Enable on Your MetaMask on Ropsten Testnet.
 			</Typography>
+			<BacktoHomepage />
 		</Layout>
 	);
 };

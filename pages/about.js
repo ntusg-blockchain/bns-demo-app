@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '../Components/Layout';
 import { Typography, Container } from '@material-ui/core';
+import BacktoHomepage from '../Components/BacktoHomepage';
 
 const aboutPage = () => (
 	<Layout>
@@ -13,6 +14,7 @@ const aboutPage = () => (
 				ranging from computer science, to math, to business here at Nanyang Technological University in
 				Singapore.
 			</Typography>
+			<BacktoHomepage />
 		</Container>
 	</Layout>
 );

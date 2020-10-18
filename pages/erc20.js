@@ -14,6 +14,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import BigNumber from 'bignumber.js';
+import BacktoHomepage from '../Components/BacktoHomepage';
 
 class Dapp extends React.Component {
 	state = {
@@ -398,11 +399,7 @@ class Dapp extends React.Component {
 					<p>{this.state.allowanceValue}</p>
 					<br />
 					<br />
-					<Typography variant="h6">
-						<Button href="/" disableRipple rel="noopener noreferrer">
-							<u style={{ textTransform: 'none' }}> Back to Homepage. </u>
-						</Button>
-					</Typography>
+					<BacktoHomepage />
 				</Container>
 				<br />
 			</Layout>

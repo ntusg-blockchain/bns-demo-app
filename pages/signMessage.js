@@ -3,6 +3,7 @@ import Link from '@material-ui/core/Link';
 import Web3Container from '../lib/Web3Container';
 import { Button, Typography, TextField, CircularProgress, Card, CardContent } from '@material-ui/core';
 import Layout from '../Components/Layout';
+import BacktoHomepage from '../Components/BacktoHomepage';
 
 import Metamask from '../Components/Metamask';
 
@@ -208,11 +209,7 @@ class SignMessage extends React.Component {
 					)}
 					<br />
 					<br />
-					<Typography variant="h6">
-						<Button href="/" disableRipple rel="noopener noreferrer">
-							<u style={{ textTransform: 'none' }}> Back to Homepage. </u>
-						</Button>
-					</Typography>
+					<BacktoHomepage />
 				</div>
 			</Layout>
 		);

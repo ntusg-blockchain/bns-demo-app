@@ -19,6 +19,7 @@ import {
 	Card,
 	CardContent
 } from '@material-ui/core';
+import BacktoHomepage from '../Components/BacktoHomepage';
 
 class Dapp extends React.Component {
 	state = {
@@ -263,11 +264,7 @@ class Dapp extends React.Component {
 					<br />
 					<br />
 					<br />
-					<Typography variant="h6">
-						<Button href="/" disableRipple rel="noopener noreferrer">
-							<u style={{ textTransform: 'none' }}> Back to Homepage. </u>
-						</Button>
-					</Typography>
+					<BacktoHomepage />
 				</div>
 			</Layout>
 		);

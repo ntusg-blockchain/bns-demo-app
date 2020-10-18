@@ -1,5 +1,6 @@
 import Layout from '../Components/Layout';
 import { Typography, Container } from '@material-ui/core';
+import BacktoHomepage from '../Components/BacktoHomepage';
 
 function Error({ statusCode }) {
 	return (
@@ -20,11 +21,7 @@ function Error({ statusCode }) {
 				<br />
 				<br />
 
-				<Typography variant="h6">
-					<Button href="/" disableRipple rel="noopener noreferrer">
-						<u style={{ textTransform: 'none' }}> Back to Dapps page.</u>
-					</Button>
-				</Typography>
+				<BacktoHomepage />
 			</Container>
 		</Layout>
 	);
