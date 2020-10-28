@@ -5,7 +5,12 @@ const { createSecureHeaders } = require('next-secure-headers');
 
 module.exports = {
 	async headers() {
-		return [ { source: '/(.*)', headers: createSecureHeaders() } ];
+		return [
+			{
+				source: '/(.*)',
+				headers: createSecureHeaders({ contentSecurityPolicy: true, referrerPolicy: 'no-referrer' })
+			}
+		];
 	},
 	webpack: (config, { buildId, dev }) => {
 		// This allows the app to refer to files through our symlink
