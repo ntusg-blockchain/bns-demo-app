@@ -9,7 +9,6 @@ function Copyright() {
 	return (
 		<Typography variant="body2" color="textSecondary">
 			{'Copyright © '}2020<br />
-			Build by{' '}
 			<Link color="inherit" href="https://github.com/ntusg-blockchain/bns-demo-app" rel="noopener noreferrer">
 				Under GNU GLP v3 License
 			</Link>
