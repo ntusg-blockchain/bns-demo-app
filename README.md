@@ -60,5 +60,5 @@ This simply wraps `web3.eth.getAccounts` into a Promise so we can use it cleanly
 # Materiaul-UI
 https://material-ui.com/getting-started/
 
-## License
+# License
 All files in this repository are released under the [GPLv3](https://github.com/ntusg-blockchain/bns-demo-app/blob/master/LICENSE) license.
