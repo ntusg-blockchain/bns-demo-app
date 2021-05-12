@@ -12,9 +12,13 @@ Originated from : https://github.com/adrianmcli/truffle-next
 </p>
 
 ---
+# Reference guide to Deploy Smart contract on Ropsten
 
+https://medium.com/coinmonks/deploy-your-smart-contract-directly-from-truffle-with-infura-ba1e1f1d40c2
+https://medium.com/coinmonks/5-minute-guide-to-deploying-smart-contracts-with-truffle-and-ropsten-b3e30d5ee1e
 
-# Local setup 
+After contract deployment , put the json file in contracts and create wrappers in lib folder. Build a new page for the demo smart contract. 
+# Local frontend setup 
 Install Node with v12 @ https://nodejs.org/en/download/
 
 Run the following Command: 
