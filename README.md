@@ -15,6 +15,7 @@ Originated from : https://github.com/adrianmcli/truffle-next
 # Reference guide to Deploy Smart contract on Ropsten
 
 https://medium.com/coinmonks/deploy-your-smart-contract-directly-from-truffle-with-infura-ba1e1f1d40c2
+
 https://medium.com/coinmonks/5-minute-guide-to-deploying-smart-contracts-with-truffle-and-ropsten-b3e30d5ee1e
 
 Truffle Video guide :
