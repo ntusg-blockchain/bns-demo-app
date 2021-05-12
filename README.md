@@ -99,6 +99,9 @@ This simply wraps `web3.eth.getAccounts` into a Promise so we can use it cleanly
 # Materiaul-UI
 https://material-ui.com/getting-started/
 
+# Nextjs
+https://nextjs.org/learn/basics/create-nextjs-app
+
 # NextJs Github page setupReference 
 https://github.com/thierryc/Next-gh-page-example
 
