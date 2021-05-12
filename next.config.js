@@ -19,7 +19,7 @@ module.exports = {
 		}
 	  },
 	  //assetPrefix: '',
-	  assetPrefix: !debug ? '/bns-demo-app/' : '',
+	  assetPrefix: !debug ? '/bns-demo-app/blob/gh-pages/' : '',
 	  webpack: (config, { dev }) => {
 		// Perform customizations to webpack config
 		// console.log('webpack');
