@@ -1,7 +1,7 @@
 //Set up dotenv
 const { parsed: localEnv } = require('dotenv').config();
 const webpack = require('webpack');
-const { createSecureHeaders } = require('next-secure-headers');
+// const { createSecureHeaders } = require('next-secure-headers');
 const debug = process.env.NODE_ENV !== "production";
 
 module.exports = {
@@ -42,7 +42,7 @@ module.exports = {
 	  }, */
 
 	//In general, X-Powered-By HTTP response header should be removed from response headers because it helps hackers to get the server information.
-	poweredByHeader: false,
+	/*poweredByHeader: false,
 
 	async headers() {
 		return [
@@ -58,4 +58,5 @@ module.exports = {
 		config.plugins.push(new webpack.EnvironmentPlugin(localEnv)); //dotenv
 		return config;
 	}
+	*/
 };

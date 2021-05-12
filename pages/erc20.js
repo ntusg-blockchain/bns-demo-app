@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import Erc20Web3Container from '../lib/Erc20Web3Container';
 import { Button } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
