@@ -10,6 +10,12 @@ module.exports = {
 		return {
 		  "/": { page: "/" },
 		  "/about": { page: "/about" },
+		  "/attendanceTracker": { page: "/attendanceTracker" },
+		  "/integerstorage": { page: "/integerstorage" },
+		  "/quickguide": { page: "/quickguide" },
+		  "/callIntegerStorage": { page: "/callIntegerStorage" },
+		  "/signMessage": { page: "/signMessage" },
+		  "/404": { page: "/404" }
 		}
 	  },
 	  //assetPrefix: '',
