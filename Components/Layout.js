@@ -86,7 +86,7 @@ const Layout = (props) => {
 				<ThemeProvider theme={darkMode ? lightTheme : darkTheme}>
 					<Head>
 						<html lang="en" />
-						<link rel="shortcut icon" href="/static/favicon.ico" />
+						<link rel="shortcut icon" href="/static/favicon.ico"   as={ process.env.BACKEND_URL + '/'}/>
 						<title>Blockchain@NTU Dapps</title>
 						<meta property="og:title" content="Blockchain@NTU Dapps" key="title" />
 					</Head>

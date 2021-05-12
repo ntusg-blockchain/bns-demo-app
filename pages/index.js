@@ -137,7 +137,7 @@ class Index extends React.Component {
 						<li>
 							<Typography variant="subtitle1">
 								{' '}
-								<Button href="/integerstorage" disableRipple rel="noopener noreferrer">
+								<Button href="/integerstorage" as={ process.env.BACKEND_URL + '/integerstorage'} disableRipple rel="noopener noreferrer">
 									<u style={{ textTransform: 'none' }}> Integer Storage</u>
 								</Button>
 							</Typography>
@@ -146,7 +146,7 @@ class Index extends React.Component {
 						<li>
 							<Typography variant="subtitle1">
 								{' '}
-								<Button href="/callIntegerStorage" disableRipple rel="noopener noreferrer">
+								<Button href="/callIntegerStorage" as={ process.env.BACKEND_URL + '/callIntegerStorage'} disableRipple rel="noopener noreferrer">
 									<u style={{ textTransform: 'none' }}> Call Integer Storage</u>
 								</Button>
 							</Typography>
@@ -155,7 +155,7 @@ class Index extends React.Component {
 						<li>
 							<Typography variant="subtitle1">
 								{' '}
-								<Button href="/attendanceTracker" disableRipple rel="noopener noreferrer">
+								<Button href="/attendanceTracker" as={ process.env.BACKEND_URL + '/attendanceTracker'} disableRipple rel="noopener noreferrer">
 									<u style={{ textTransform: 'none' }}> Attendance Tracker </u>
 								</Button>
 							</Typography>

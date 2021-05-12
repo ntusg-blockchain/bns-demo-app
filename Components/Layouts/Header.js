@@ -24,7 +24,7 @@ function EtherScan({ accounts }) {
 	if (accounts === undefined || accounts.length == 0) {
 		return (
 			<div>
-				<Link href="/integerstorage">
+				<Link href="/integerstorage"  as={ process.env.BACKEND_URL + '/integerstorage'}>
 					<a>Enable MetaMask</a>
 				</Link>
 			</div>
@@ -90,7 +90,7 @@ const Header = () => {
 				<Toolbar>
 					<Grid container direction="row" justify="space-evenly" alignItems="center">
 						<Grid item sm={6} md={6} style={{ paddingLeft: '40px' }}>
-							<Link href="/">
+							<Link href="/" as={ process.env.BACKEND_URL + '/'}>
 								<img
 									style={{
 										cursor: 'pointer',
