@@ -17,7 +17,18 @@ Originated from : https://github.com/adrianmcli/truffle-next
 https://medium.com/coinmonks/deploy-your-smart-contract-directly-from-truffle-with-infura-ba1e1f1d40c2
 https://medium.com/coinmonks/5-minute-guide-to-deploying-smart-contracts-with-truffle-and-ropsten-b3e30d5ee1e
 
-After contract deployment , put the json file in contracts and create wrappers in lib folder. Build a new page for the demo smart contract. 
+Truffle Video guide :
+https://www.youtube.com/watch?v=8fPcQIPNfG8
+
+Hardhat Video guide : 
+https://www.youtube.com/watch?v=9Qpi80dQsGU
+
+# Steps to integrate into the Demo Frontend.
+(1) After contract deployment , import the json output file in the '''contracts''' folder.
+(2) Create Contract wrapper in ``` lib ``` folder. 
+(3) Create a new page in the ```pages ``` folder, and make the necessary changes for the demo smart contract. 
+(4) Create html tag to link the new page in ``` index.js ```.
+
 # Local frontend setup 
 Install Node with v12 @ https://nodejs.org/en/download/
 
