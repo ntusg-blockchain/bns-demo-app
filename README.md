@@ -13,6 +13,26 @@ Originated from : https://github.com/adrianmcli/truffle-next
 
 ---
 
+
+# Local setup 
+Install Node with v12 @ https://nodejs.org/en/download/
+
+Run the following Command: 
+
+``` $ git clone https://github.com/ntusg-blockchain/bns-demo-app.git ``` 
+
+``` $ npm install ```
+
+``` $ npm run dev ```
+
+Push to Master branch and publish on Github
+
+``` $ npm run githubDeploy1 ```
+https://github.com/ntusg-blockchain/bns-demo-app
+
+https://ntusg-blockchain.github.io/bns-demo-app
+
+
 # Bns Demo App
 
 - 1st demo is a getter and setter of an integer. To demonstrate state changes.
@@ -59,6 +79,9 @@ This simply wraps `web3.eth.getAccounts` into a Promise so we can use it cleanly
 
 # Materiaul-UI
 https://material-ui.com/getting-started/
+
+# NextJs Github page setupReference 
+https://github.com/thierryc/Next-gh-page-example
 
 # License
 All files in this repository are released under the [GPLv3](https://github.com/ntusg-blockchain/bns-demo-app/blob/master/LICENSE) license.
