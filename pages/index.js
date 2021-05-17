@@ -79,13 +79,13 @@ class Index extends React.Component {
 						{' '}
 						Dapps are built for educational and demonstration purposes only.{' '}
 						<p>
-							💖💻📦🌈📦🌈📦💻💖 <Typography variant="subtitle1"> Choose the following Testnet</Typography>
+							💻📦🌈📦🌈📦💻 <Typography variant="subtitle1"> Choose the following Testnet</Typography>
 							<p>
 								<Button color="subtitle1" href="/ETHropsten" disableRipple rel="noopener noreferrer">
 								<img style ={{width: '6vw', height: '6vh' }} src = "static/ethereum-eth-logo.svg" alt="BNB SVG"/>
 
 									<b>
-										<u> ETH Ropsten testnet</u>
+										<u> Ropsten Testnet</u>
 									</b>
 								</Button>{' '}
 								Or {' '}
