@@ -1,15 +1,14 @@
 import React from 'react';
 import { Header, Footer } from '../Components/Layouts';
 import Head from 'next/head';
-import { Paper, Switch, CircularProgress } from '@material-ui/core';
+import { Paper, CircularProgress } from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import red from '@material-ui/core/colors/red';
-import InvertColorsSharpIcon from '@material-ui/icons/InvertColorsSharp';
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const Layout = (props) => {
-	const [ darkMode, setDarkMode ] = useState(true);
+	const [ darkMode, setDarkMode ] = useState(props.themeMode);
 	const [ loading, setLoading ] = useState(true);
 
 	// It will be executed before rendering
@@ -22,7 +21,7 @@ const Layout = (props) => {
 				main: '#2b2e3b'
 			},
 			secondary: {
-				main: '#19857b'
+				main: '#ffc107'
 			},
 			error: {
 				main: red.A400
@@ -37,7 +36,6 @@ const Layout = (props) => {
 			}
 		}
 	});
-
 	const lightTheme = createMuiTheme({
 		palette: {
 			type: 'light',
@@ -82,7 +80,7 @@ const Layout = (props) => {
 	} else {
 		console.log = console.warn = console.error = () => {};
 		return (
-			<div>
+			<div >
 				<ThemeProvider theme={darkMode ? lightTheme : darkTheme}>
 					<Head>
 						<html lang="en" />
@@ -104,7 +102,6 @@ const Layout = (props) => {
 									margin: 0;
 							`}</style>
 						<br />
-
 						<Footer children={props.children} />
 					</Paper>
 				</ThemeProvider>

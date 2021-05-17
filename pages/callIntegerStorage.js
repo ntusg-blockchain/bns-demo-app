@@ -30,7 +30,9 @@ class Dapp extends React.Component {
 		loading: false,
 		contractAddress: '',
 		transactionURL: '',
-		originalAddress: ''
+		originalAddress: '',
+		networkID: ''
+
 	};
 
 	async componentDidMount() {
@@ -41,7 +43,8 @@ class Dapp extends React.Component {
 			let value = await contract.methods.getStorage().call({ from: accounts[0] });
 			let balanceInWei = await web3.eth.getBalance(accounts[0]);
 			let originalAddress = await contract.methods.simpleStorage_address().call({ from: accounts[0] });
-
+			let networkID = await web3.eth.net.getId();
+			this.setState({ networkID });
 			this.setState({ contractAddress: contract._address });
 			this.setState({ ethBalance: balanceInWei / 1e18 });
 			this.setState({ value, originalAddress });
@@ -264,7 +267,7 @@ class Dapp extends React.Component {
 					<br />
 					<br />
 					<br />
-					<BacktoHomepage />
+					<BacktoHomepage networkData ={this.state.networkID} />
 				</div>
 			</Layout>
 		);

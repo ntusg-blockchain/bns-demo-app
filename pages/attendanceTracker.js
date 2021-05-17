@@ -28,7 +28,9 @@ class Dapp extends React.Component {
 		metamaskEnabled: false,
 		signLoading: false,
 		burnLoading: false,
-		transactionURL: ''
+		transactionURL: '',
+		networkID: ''
+
 	};
 
 	async componentDidMount() {
@@ -37,6 +39,8 @@ class Dapp extends React.Component {
 			const value = await contract.methods.checkAttendee(accounts[0]).call({ from: accounts[0] });
 			const balanceInWei = await web3.eth.getBalance(accounts[0]);
 			const AttendeeCount = await contract.methods.getAttendeeCount().call({ from: accounts[0] });
+			let networkID = await web3.eth.net.getId();
+			this.setState({ networkID });
 			this.setState({ AttendeeCount: AttendeeCount, contractAddress: contract._address });
 			this.setState({ ethBalance: balanceInWei / 1e18 });
 			this.setState({ value });
@@ -268,7 +272,7 @@ class Dapp extends React.Component {
 					<br />
 					<br />
 					<br />
-					<BacktoHomepage />
+					<BacktoHomepage networkData ={this.state.networkID} />
 				</div>
 				<br />
 			</Layout>

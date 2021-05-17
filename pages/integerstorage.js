@@ -28,14 +28,17 @@ class Integerstorage extends React.Component {
 		metamaskEnabled: false,
 		loading: false,
 		contractAddress: '',
-		transactionURL: ''
+		transactionURL: '',
+		networkID: ''
 	};
 
 	async componentDidMount() {
 		try {
 			const { accounts, contract, web3 } = this.props;
-			const value = await contract.methods.get().call({ from: accounts[0] });
-			const balanceInWei = await web3.eth.getBalance(accounts[0]);
+			let value = await contract.methods.get().call({ from: accounts[0] });
+			let balanceInWei = await web3.eth.getBalance(accounts[0]);
+			let networkID = await web3.eth.net.getId();
+			this.setState({ networkID });
 			this.setState({ ethBalance: balanceInWei / 1e18, contractAddress: contract._address });
 			this.setState({ value });
 		} catch (error) {
@@ -237,7 +240,7 @@ class Integerstorage extends React.Component {
 					<br />
 					<br />
 					<br />
-					<BacktoHomepage />
+					<BacktoHomepage networkData ={this.state.networkID} />
 				</div>
 			</Layout>
 		);

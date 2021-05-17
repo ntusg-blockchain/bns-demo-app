@@ -10,6 +10,7 @@ import Menu from '@material-ui/core/Menu';
 import Web3Container from '../../lib/Web3Container';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -32,7 +33,8 @@ function EtherScan({ accounts }) {
 	} else {
 		return (
 			<div>
-				<Typography variant="subtitle2" color="textPrimary">
+			<div>
+				<Typography style = { {bottomPadding:'5px' }}variant="subtitle2" color="textPrimary">
 					<Link
 						color="inherit"
 						href={'https://ropsten.etherscan.io/address/' + accounts}
@@ -45,6 +47,23 @@ function EtherScan({ accounts }) {
 						</a>
 					</Link>
 				</Typography>
+				</div>
+				<Divider ></Divider>
+				<div>
+				<Typography variant="subtitle2" color="textPrimary">
+					<Link
+						color="inherit"
+						href={'https://testnet.bscscan.com/address/' + accounts}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<a>
+							{' '}
+							<u>View BSCScan</u>{' '}
+						</a>
+					</Link>
+				</Typography>
+				</div>
 			</div>
 		);
 	}
