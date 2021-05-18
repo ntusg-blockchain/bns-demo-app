@@ -85,6 +85,7 @@ class Index extends React.Component {
 							<Grid container spacing={2}>
 								<Grid item xs>
 									<Button
+										variant="contained"
 										style={{ width: '100%' }}
 										color="subtitle1"
 										href="/ETHropsten"
@@ -92,17 +93,18 @@ class Index extends React.Component {
 										rel="noopener noreferrer"
 									>
 										<img
-											style={{ width: '6vw', height: '6vh' }}
+											style={{ width: '5vh', height: '6vh' }}
 											src="static/ethereum-eth-logo.svg"
 											alt="BNB SVG"
 										/>
 										<b>
-											<u> Ropsten Testnet</u>
+										 Ropsten Testnet
 										</b>
 									</Button>
 								</Grid>
-								<Grid item xs>
+								<Grid item xs style={{ width: '100%' }}>
 									<Button
+										variant="contained"
 										style={{ width: '100%' }}
 										color="subtitle1"
 										href="/BSCtestnet"
@@ -110,12 +112,12 @@ class Index extends React.Component {
 										rel="noopener noreferrer"
 									>
 										<img
-											style={{ width: '6vw', height: '6vh' , marginRight: '5px' }}
+											style={{ width: '5vh', height: '6vh', marginRight: '5px' }}
 											src="static/binance-coin-bnb-logo.svg"
 											alt="BNB SVG"
-										/>{' '}
+										/> 
 										<b>
-											<u> BSC Testnet</u>
+										 BSC Testnet
 										</b>
 									</Button>{' '}
 								</Grid>
