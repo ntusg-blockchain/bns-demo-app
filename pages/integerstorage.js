@@ -29,7 +29,8 @@ class Integerstorage extends React.Component {
 		loading: false,
 		contractAddress: '',
 		transactionURL: '',
-		networkID: ''
+		networkID: '',
+		darkTheme: false,
 	};
 
 	async componentDidMount() {
@@ -38,6 +39,12 @@ class Integerstorage extends React.Component {
 			let value = await contract.methods.get().call({ from: accounts[0] });
 			let balanceInWei = await web3.eth.getBalance(accounts[0]);
 			let networkID = await web3.eth.net.getId();
+			if ( networkID === 3 ) {
+				this.setState({ darkTheme : false });
+			} else { 
+				this.setState({ darkTheme : true });
+			}
+			console.log("darkTheme : " + this.state.darkTheme);
 			this.setState({ networkID });
 			this.setState({ ethBalance: balanceInWei / 1e18, contractAddress: contract._address });
 			this.setState({ value });
@@ -98,7 +105,7 @@ class Integerstorage extends React.Component {
 
 	render() {
 		return (
-			<Layout>
+			<Layout themeMode={this.state.darkTheme}>
 				<Dialog
 					onClose={this.handleClose}
 					aria-labelledby="customized-dialog-title"

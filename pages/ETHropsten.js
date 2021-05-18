@@ -22,7 +22,7 @@ class EthRopsten extends React.Component {
 	};
 	render() {
 		return (
-			<Layout themeMode={true}>
+			<Layout themeMode={false}>
 				<Dialog
 					fullWidth={true}
 					maxWidth="md"

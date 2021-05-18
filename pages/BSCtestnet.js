@@ -22,7 +22,7 @@ class BscTestnet extends React.Component {
 	};
 	render() {
 		return (
-			<Layout themeMode={false}>
+			<Layout themeMode={true}>
 				<Dialog
 					fullWidth={true}
 					maxWidth="md"
@@ -81,15 +81,6 @@ class BscTestnet extends React.Component {
 						Dapps are built for educational and demonstration purposes only.{' '}
 						<p>
 							💖🔸🌈{' '}
-							<p>
-								Watch this{' '}
-								<Button color="subtitle1" href="/quickguide" disableRipple rel="noopener noreferrer">
-									<b>
-										<u> Quick Guide</u>
-									</b>
-								</Button>{' '}
-								to setup your <b> BSC Testnet.</b>
-							</p>{' '}
 						</p>
 					</Typography>
 

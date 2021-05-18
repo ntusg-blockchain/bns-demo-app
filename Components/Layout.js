@@ -61,6 +61,15 @@ const Layout = (props) => {
 		};
 	}, []);
 
+	useEffect(() => {
+		// KIV
+		if( props.themeMode !== false){
+			setDarkMode(true);
+			console.log(typeof props.themeMode);
+			console.log("change to dark : " + props.themeMode )
+		}
+	  }, [props.themeMode]);
+
 	if (loading == true) {
 		return (
 			<div
@@ -79,9 +88,10 @@ const Layout = (props) => {
 		);
 	} else {
 		console.log = console.warn = console.error = () => {};
+		// if darkmode true = dark theme , if false light.
 		return (
 			<div >
-				<ThemeProvider theme={darkMode ? lightTheme : darkTheme}>
+				<ThemeProvider theme={darkMode ? darkTheme : lightTheme }>
 					<Head>
 						<html lang="en" />
 						<link rel="shortcut icon" href="static/favicon.ico"   as={ process.env.BACKEND_URL + '/'}/>

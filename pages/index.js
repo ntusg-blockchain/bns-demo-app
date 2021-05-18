@@ -7,7 +7,8 @@ import {
 	DialogContent,
 	DialogContentText,
 	DialogTitle,
-	Typography
+	Typography,
+	Grid
 } from '@material-ui/core';
 
 class Index extends React.Component {
@@ -21,7 +22,7 @@ class Index extends React.Component {
 	};
 	render() {
 		return (
-			<Layout themeMode = {true}>
+			<Layout themeMode={false}>
 				<Dialog
 					fullWidth={true}
 					maxWidth="md"
@@ -80,22 +81,45 @@ class Index extends React.Component {
 						Dapps are built for educational and demonstration purposes only.{' '}
 						<p>
 							💻📦🌈📦🌈📦💻 <Typography variant="subtitle1"> Choose the following Testnet</Typography>
-							<p>
-								<Button color="subtitle1" href="/ETHropsten" disableRipple rel="noopener noreferrer">
-								<img style ={{width: '6vw', height: '6vh' }} src = "static/ethereum-eth-logo.svg" alt="BNB SVG"/>
-
-									<b>
-										<u> Ropsten Testnet</u>
-									</b>
-								</Button>{' '}
-								Or {' '}
-								<Button color="subtitle1" href="/BSCtestnet" disableRipple rel="noopener noreferrer">
-								<img style ={{width: '6vw', height: '6vh' }} src = "static/binance-coin-bnb-logo.svg" alt="BNB SVG"/>
-									<b>
-										<u> BSC Testnet</u>
-									</b>
-								</Button>{' '}
-							</p>{' '}
+							<br />
+							<Grid container spacing={2}>
+								<Grid item xs>
+									<Button
+										style={{ width: '100%' }}
+										color="subtitle1"
+										href="/ETHropsten"
+										disableRipple
+										rel="noopener noreferrer"
+									>
+										<img
+											style={{ width: '6vw', height: '6vh' }}
+											src="static/ethereum-eth-logo.svg"
+											alt="BNB SVG"
+										/>
+										<b>
+											<u> Ropsten Testnet</u>
+										</b>
+									</Button>
+								</Grid>
+								<Grid item xs>
+									<Button
+										style={{ width: '100%' }}
+										color="subtitle1"
+										href="/BSCtestnet"
+										disableRipple
+										rel="noopener noreferrer"
+									>
+										<img
+											style={{ width: '6vw', height: '6vh' , marginRight: '5px' }}
+											src="static/binance-coin-bnb-logo.svg"
+											alt="BNB SVG"
+										/>{' '}
+										<b>
+											<u> BSC Testnet</u>
+										</b>
+									</Button>{' '}
+								</Grid>
+							</Grid>{' '}
 						</p>
 					</Typography>
 				</div>

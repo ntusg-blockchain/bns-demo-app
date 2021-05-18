@@ -31,7 +31,9 @@ class Dapp extends React.Component {
 		contractAddress: '',
 		transactionURL: '',
 		originalAddress: '',
-		networkID: ''
+		networkID: '',
+		darkTheme: false,
+
 
 	};
 
@@ -44,6 +46,12 @@ class Dapp extends React.Component {
 			let balanceInWei = await web3.eth.getBalance(accounts[0]);
 			let originalAddress = await contract.methods.simpleStorage_address().call({ from: accounts[0] });
 			let networkID = await web3.eth.net.getId();
+			if ( networkID === 3 ) {
+				this.setState({ darkTheme : false });
+			} else { 
+				this.setState({ darkTheme : true });
+			}
+			console.log("darkTheme : " + this.state.darkTheme);
 			this.setState({ networkID });
 			this.setState({ contractAddress: contract._address });
 			this.setState({ ethBalance: balanceInWei / 1e18 });
@@ -104,7 +112,7 @@ class Dapp extends React.Component {
 
 	render() {
 		return (
-			<Layout>
+			<Layout themeMode={this.state.darkTheme}>
 				<Dialog
 					onClose={this.handleClose}
 					aria-labelledby="customized-dialog-title"
