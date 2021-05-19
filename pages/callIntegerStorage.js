@@ -33,6 +33,7 @@ class Dapp extends React.Component {
 		originalAddress: '',
 		networkID: '',
 		darkTheme: false,
+		etherscanLink : '',
 
 
 	};
@@ -48,8 +49,10 @@ class Dapp extends React.Component {
 			let networkID = await web3.eth.net.getId();
 			if ( networkID === 3 ) {
 				this.setState({ darkTheme : false });
+				this.setState({ etherscanLink : 'https://ropsten.etherscan.io/address/' });
 			} else { 
 				this.setState({ darkTheme : true });
+				this.setState({ etherscanLink : 'https://testnet.bscscan.com/address/' });
 			}
 			console.log("darkTheme : " + this.state.darkTheme);
 			this.setState({ networkID });
@@ -64,12 +67,18 @@ class Dapp extends React.Component {
 	storeValue = async () => {
 		event.preventDefault();
 		this.setState({ loading: true });
-		const { accounts, contract } = this.props;
+		const { accounts, contract, networkID } = this.props;
 		try {
 			let result = await contract.methods.setStorage(this.state.setvalue).send({ from: accounts[0] });
 			result = result.transactionHash;
-			let string = `https://ropsten.etherscan.io/tx/${result}`;
-			this.setState({ transactionURL: string });
+			let returnString
+			if (networkID === 3 ) {
+				returnString = `https://ropsten.etherscan.io/tx/${result}`;
+			} else {
+				returnString = `https://testnet.bscscan.com/tx/${result}`;
+			}
+			
+			this.setState({ transactionURL: returnString });
 		} catch (err) {
 			alert(`Error`);
 			this.setState({ loading: false });
@@ -109,7 +118,7 @@ class Dapp extends React.Component {
 		this.setState({ transactionURL: '' });
 		//window.location.reload(true);
 	};
-
+// 						 { this.state.transactionURL.replace('https://ropsten.etherscan.io/tx/', '')}
 	render() {
 		return (
 			<Layout themeMode={this.state.darkTheme}>
@@ -123,10 +132,9 @@ class Dapp extends React.Component {
 						<DialogContentText>
 							Click to view the-
 							<a rel="noopener noreferrer" href={this.state.transactionURL} target="_blank">
-								Transaction Link @ Etherscan
+								Transaction
 							</a>
 						</DialogContentText>
-						{this.state.transactionURL.replace('https://ropsten.etherscan.io/tx/', '')}
 					</DialogContent>
 					<DialogActions>
 						<Button onClick={this.handleClose} color="primary">
@@ -155,7 +163,7 @@ class Dapp extends React.Component {
 						Current Contract Address :{' '}
 						<Link
 							color="inherit"
-							href={'https://ropsten.etherscan.io/address/' + this.state.contractAddress}
+							href={this.state.etherscanLink + this.state.contractAddress}
 							target="_blank"
 							rel="noopener noreferrer"
 						>
@@ -184,7 +192,7 @@ class Dapp extends React.Component {
 						Integer Storage Contract Address :{' '}
 						<Link
 							color="inherit"
-							href={'https://ropsten.etherscan.io/address/' + this.state.originalAddress}
+							href={this.state.etherscanLink + this.state.originalAddress}
 							target="_blank"
 							rel="noopener noreferrer"
 						>

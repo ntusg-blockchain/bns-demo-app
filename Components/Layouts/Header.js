@@ -135,7 +135,7 @@ const Header = () => {
 										<Web3Container
 											renderLoading={() => (
 												<div style={{ fontSize: '0.8rem', paddingLeft: '10px' }}>
-													Metamask not installed / Change to Ropsten
+													Metamask not installed / Change to Ropsten / BSC
 												</div>
 											)}
 											render={({ accounts }) => <Accounts accounts={accounts} />}

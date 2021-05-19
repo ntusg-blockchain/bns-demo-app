@@ -14,7 +14,7 @@ const BacktoHomepage = (props) => {
 				</Typography>
 			</div>
 		);
-	} else if (networkID === 56) {
+	} else if (networkID === 97) {
 		return (
 			<div>
 				<Typography variant="h6">
