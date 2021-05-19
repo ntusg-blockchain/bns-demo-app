@@ -31,8 +31,9 @@ class Dapp extends React.Component {
 		transactionURL: '',
 		networkID: '',
 		darkTheme: false,
-
-
+		etherscanLink : '',
+		faucetlink:'',
+		networkName:''
 	};
 
 	async componentDidMount() {
@@ -44,10 +45,15 @@ class Dapp extends React.Component {
 			let networkID = await web3.eth.net.getId();
 			if ( networkID === 3 ) {
 				this.setState({ darkTheme : false });
+				this.setState({ etherscanLink : 'https://ropsten.etherscan.io/address/' });
+				this.setState({ faucetlink : "https://faucet.metamask.io/" });
+				this.setState({ networkName : "Ropsten Testnet" });
 			} else { 
 				this.setState({ darkTheme : true });
+				this.setState({ etherscanLink : 'https://testnet.bscscan.com/address/' });
+				this.setState({ faucetlink : "https://testnet.binance.org/faucet-smart" });
+				this.setState({ networkName : "Binance Smart Chain Testnet" });
 			}
-			console.log("darkTheme : " + this.state.darkTheme);
 			this.setState({ networkID });
 			this.setState({ AttendeeCount: AttendeeCount, contractAddress: contract._address });
 			this.setState({ ethBalance: balanceInWei / 1e18 });
@@ -60,12 +66,17 @@ class Dapp extends React.Component {
 	storeValue = async () => {
 		event.preventDefault();
 		this.setState({ signLoading: true });
-		const { accounts, contract } = this.props;
+		const { accounts, contract , networkID } = this.props;
 		try {
 			let result = await contract.methods.signIn().send({ from: accounts[0], value: 100000000000000000 });
 			result = result.transactionHash;
-			let string = `https://ropsten.etherscan.io/tx/${result}`;
-			this.setState({ transactionURL: string });
+			let returnString;
+			if (networkID === '3' ) {
+				returnString = `https://ropsten.etherscan.io/tx/${result}`;
+			} else {
+				returnString = `https://testnet.bscscan.com/tx/${result}`;
+			}
+			this.setState({ transactionURL: returnString });
 		} catch (err) {
 			alert(`Error`);
 			this.setState({ signLoading: false });
@@ -78,12 +89,17 @@ class Dapp extends React.Component {
 	burnValue = async () => {
 		event.preventDefault();
 		this.setState({ burnLoading: true });
-		const { accounts, contract } = this.props;
+		const { accounts, contract,networkID } = this.props;
 		try {
 			let result = await contract.methods.signOut().send({ from: accounts[0] });
 			result = result.transactionHash;
-			let string = `https://ropsten.etherscan.io/tx/${result}`;
-			this.setState({ transactionURL: string });
+			let returnString;
+			if (networkID === '3' ) {
+				returnString = `https://ropsten.etherscan.io/tx/${result}`;
+			} else {
+				returnString = `https://testnet.bscscan.com/tx/${result}`;
+			}
+			this.setState({ transactionURL: returnString});
 		} catch (err) {
 			alert(`Error`);
 			this.setState({ burnLoading: false });
@@ -125,7 +141,7 @@ class Dapp extends React.Component {
 		this.setState({ transactionURL: '' });
 		//window.location.reload(true);
 	};
-
+// 						{this.state.transactionURL.replace('https://ropsten.etherscan.io/tx/', '')}
 	render() {
 		return (
 			<Layout themeMode={this.state.darkTheme}>
@@ -139,13 +155,12 @@ class Dapp extends React.Component {
 						<DialogContentText>
 							Click to view the-
 							<a rel="noopener noreferrer" href={this.state.transactionURL} target="_blank">
-								Transaction Link @ Etherscan
+								Transaction
 							</a>
 						</DialogContentText>
-						{this.state.transactionURL.replace('https://ropsten.etherscan.io/tx/', '')}
 					</DialogContent>
 					<DialogActions>
-						<Button onClick={this.handleClose} color="primary">
+						<Button onClick={this.handleClose} color="textPrimary">
 							Close
 						</Button>
 					</DialogActions>
@@ -157,7 +172,7 @@ class Dapp extends React.Component {
 					<Button
 						style={{ float: 'right' }}
 						variant="contained"
-						color="inherit"
+						color="secondary"
 						onClick={this.enableMetaMask}
 					>
 						Enable MetaMask
@@ -169,7 +184,7 @@ class Dapp extends React.Component {
 						Contract Address :{' '}
 						<Link
 							color="inherit"
-							href={'https://ropsten.etherscan.io/address/' + this.state.contractAddress}
+							href={this.state.etherscanLink + this.state.contractAddress}
 							target="_blank"
 							rel="noopener noreferrer"
 						>
@@ -183,7 +198,7 @@ class Dapp extends React.Component {
 						<Typography variant="h6" color="textPrimary" gutterBottom>
 							<b>
 								The purpose of Attendance tracker Dapp is to stimulate paying of ETH to change state and
-								sending ETH to / from a Smart contract.
+								sending Token to / from a Smart contract.
 								<p>
 									{' '}
 									Please click on the Contract address and view the source code of the Contract to
@@ -217,11 +232,11 @@ class Dapp extends React.Component {
 					<br />
 					<b>
 						{' '}
-						Request Ropsten ETH from{' '}
+						Request network token from{' '}
 						<Link
 							target="_blank"
 							color="inherit"
-							href="https://faucet.metamask.io/"
+							href={this.state.faucetlink}
 							rel="noopener noreferrer"
 						>
 							<a>
@@ -229,7 +244,7 @@ class Dapp extends React.Component {
 								<u>Faucet</u>{' '}
 							</a>
 						</Link>
-						to interact with the contract if your ETH Balance is Zero. {' '}
+						to interact with the contract if your Balance is Zero. {' '}
 					</b>
 					<Typography
 						style={{ paddingTop: '30px', paddingBottom: '30px' }}
@@ -237,9 +252,9 @@ class Dapp extends React.Component {
 						color="textPrimary"
 						gutterBottom
 					>
-						User ETH Balance: {this.state.ethBalance}
+						User Balance: {this.state.ethBalance}
 					</Typography>
-					<p>Click on refresh value to see the changes in ETH after interacting with the Smart Contract</p>
+					<p>Click on refresh value to see the changes in Balance after interacting with the Smart Contract</p>
 					<Button style={{ float: 'right' }} variant="contained" color="primary" onClick={this.getEthBalance}>
 						Refresh balance
 					</Button>
@@ -249,7 +264,7 @@ class Dapp extends React.Component {
 					<br />
 					<br />
 					<form style={{ width: '100%' }} onSubmit={this.storeValue}>
-						<p> Pay 0.1 ETH to sign in. </p>
+						<p> Pay 0.1 Token to sign in. </p>
 						<Button
 							type="submit"
 							style={{ float: 'right', marginTop: '20px' }}
@@ -264,7 +279,7 @@ class Dapp extends React.Component {
 					<br />
 					<br />
 					<form style={{ width: '100%' }} onSubmit={this.burnValue}>
-						<p> Contract will return 0.1 ETH back to you when you sign out. </p>
+						<p> Contract will return 0.1 Token back to you when you sign out. </p>
 
 						<Button
 							type="submit"

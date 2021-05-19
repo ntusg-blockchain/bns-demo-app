@@ -34,7 +34,8 @@ class Dapp extends React.Component {
 		networkID: '',
 		darkTheme: false,
 		etherscanLink : '',
-
+		faucetlink:'',
+		networkName:''
 
 	};
 
@@ -50,12 +51,15 @@ class Dapp extends React.Component {
 			if ( networkID === 3 ) {
 				this.setState({ darkTheme : false });
 				this.setState({ etherscanLink : 'https://ropsten.etherscan.io/address/' });
+				this.setState({ faucetlink : "https://faucet.metamask.io/" });
+				this.setState({ networkName : "Ropsten Testnet" });
 			} else { 
 				this.setState({ darkTheme : true });
 				this.setState({ etherscanLink : 'https://testnet.bscscan.com/address/' });
+				this.setState({ faucetlink : "https://testnet.binance.org/faucet-smart" });
+				this.setState({ networkName : "Binance Smart Chain Testnet" });
 			}
-			console.log("darkTheme : " + this.state.darkTheme);
-			this.setState({ networkID });
+		    this.setState({ networkID });
 			this.setState({ contractAddress: contract._address });
 			this.setState({ ethBalance: balanceInWei / 1e18 });
 			this.setState({ value, originalAddress });
@@ -151,7 +155,7 @@ class Dapp extends React.Component {
 					<Button
 						style={{ float: 'right' }}
 						variant="contained"
-						color="inherit"
+						color="secondary"
 						onClick={this.enableMetaMask}
 					>
 						Enable MetaMask
@@ -222,11 +226,11 @@ class Dapp extends React.Component {
 					<br />
 					<b>
 						{' '}
-						Request Ropsten ETH from{' '}
+						Request network token from{' '}
 						<Link
 							target="_blank"
 							color="inherit"
-							href="https://faucet.metamask.io/"
+							href={this.state.faucetlink}
 							rel="noopener noreferrer"
 						>
 							<a>
@@ -234,7 +238,7 @@ class Dapp extends React.Component {
 								<u>Faucet</u>{' '}
 							</a>
 						</Link>
-						to interact with the contract if your ETH Balance is Zero. {' '}
+						to interact with the contract if your Balance is Zero. {' '}
 					</b>
 					<Typography
 						style={{ paddingTop: '30px', paddingBottom: '30px' }}
@@ -242,7 +246,7 @@ class Dapp extends React.Component {
 						color="textPrimary"
 						gutterBottom
 					>
-						Ropsten ETH Balance: {this.state.ethBalance}
+						User Balance: {this.state.ethBalance}
 					</Typography>
 					<p>
 						Click on Refresh balance to see the deduction of ETH after interacting with the Smart Contract

@@ -65,8 +65,6 @@ const Layout = (props) => {
 		// KIV
 		if( props.themeMode !== false){
 			setDarkMode(true);
-			console.log(typeof props.themeMode);
-			console.log("change to dark : " + props.themeMode )
 		}
 	  }, [props.themeMode]);
 
