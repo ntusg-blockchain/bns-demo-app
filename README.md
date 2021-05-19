@@ -24,6 +24,12 @@ https://www.youtube.com/watch?v=8fPcQIPNfG8
 Hardhat Video guide : 
 https://www.youtube.com/watch?v=9Qpi80dQsGU
 
+# Deployed Smart Contracts on Ropsten and BSC Testnet
+Contract Addresses
+  1. SimpleStorage.sol: 0x9693A8E5Cd60DE58cF8520B151f51EaF73cBAa43
+  2. callSimpleStorage.sol: 0x143e771DA912Cf985Ec0727172bECB0d4bD79434
+  3. annoyAttendance.sol: 0x89a38bdaeeD114EB1b063D078933508Fc4D145d6
+
 # Steps to integrate into the Demo Frontend.
 (1) After contract deployment , import the json output file in the '''contracts''' folder.
 
@@ -96,7 +102,7 @@ This function requires `web3` to be passed in. It uses `truffle-contract` to ini
 
 This simply wraps `web3.eth.getAccounts` into a Promise so we can use it cleanly inside `Web3Container.js`. You probably don't need to change anything in this file.
 
-# Materiaul-UI
+# Material-UI
 https://material-ui.com/getting-started/
 
 # Nextjs
