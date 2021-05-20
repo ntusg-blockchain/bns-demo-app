@@ -10,13 +10,49 @@ import {
 	DialogTitle,
 	Typography
 } from '@material-ui/core';
+import Web3Container from '../lib/Web3Container';
+import Metamask from '../Components/Metamask';
 
 class BscTestnet extends React.Component {
 	state = {
 		modalMode: true
 	};
+	onClickBSC = () => {
+		const { web3 } = this.props;
 
+		const toHex = (num) => {
+			return '0x' + num.toString(16);
+		};
+		const paramObj = {
+			chainName: 'Binance Smart Chain Testnet',
+			chainId: toHex(97),
+			nativeCurrency: { name: 'Binance Chain Native Token', symbol: 'tBNB', decimals: 18 },
+			rpcUrls: [
+				'https://data-seed-prebsc-1-s1.binance.org:8545',
+				'https://data-seed-prebsc-2-s1.binance.org:8545',
+				'https://data-seed-prebsc-1-s2.binance.org:8545',
+				'https://data-seed-prebsc-2-s2.binance.org:8545',
+				'https://data-seed-prebsc-1-s3.binance.org:8545',
+				'https://data-seed-prebsc-2-s3.binance.org:8545'
+			],
+			blockExplorerUrls: [ 'https://testnet.bscscan.com' ]
+		};
+		web3.eth.getAccounts((error, accounts) => {
+			window.ethereum
+				.request({
+					method: 'wallet_addEthereumChain',
+					params: [ paramObj, accounts[0] ]
+				})
+				.then((result) => {
+					console.log(result);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		});
+	};
 	handleClose = () => {
+		this.onClickBSC();
 		this.setState({ modalMode: false });
 		//window.location.reload(true);
 	};
@@ -24,6 +60,8 @@ class BscTestnet extends React.Component {
 		return (
 			<Layout themeMode={true}>
 				<Dialog
+					disableBackdropClick
+					disableEscapeKeyDown
 					fullWidth={true}
 					maxWidth="md"
 					onClose={this.handleClose}
@@ -78,10 +116,7 @@ class BscTestnet extends React.Component {
 
 					<Typography variant="subtitle1">
 						{' '}
-						Dapps are built for educational and demonstration purposes only.{' '}
-						<p>
-							💖🔸🌈{' '}
-						</p>
+						Dapps are built for educational and demonstration purposes only. <p>💖🔸🌈 </p>
 					</Typography>
 
 					<Typography variant="subtitle2">
@@ -180,4 +215,10 @@ class BscTestnet extends React.Component {
 	}
 }
 
-export default BscTestnet;
+const BSCpage = () => (
+	<Web3Container
+		renderLoading={() => <Metamask />}
+		render={({ web3, accounts, contract }) => <BscTestnet accounts={accounts} contract={contract} web3={web3} />}
+	/>
+);
+export default BSCpage;

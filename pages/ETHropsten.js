@@ -24,6 +24,8 @@ class EthRopsten extends React.Component {
 		return (
 			<Layout themeMode={false}>
 				<Dialog
+					disableBackdropClick
+					disableEscapeKeyDown
 					fullWidth={true}
 					maxWidth="md"
 					onClose={this.handleClose}
@@ -75,7 +77,6 @@ class EthRopsten extends React.Component {
 					<Typography style={{ padding: '20px' }} variant="h4">
 						Welcome to Blockchain@NTU Dapps.{' '}
 					</Typography>
-
 					<Typography variant="subtitle1">
 						{' '}
 						Dapps are built for educational and demonstration purposes only.{' '}
@@ -92,11 +93,15 @@ class EthRopsten extends React.Component {
 							</p>{' '}
 						</p>
 					</Typography>
-
 					<Typography variant="subtitle2">
 						{' '}
 						To enjoy the best experience , please use Desktop browser and sign in with browser extension
 						Metamask.
+					</Typography>{' '}
+					<br />
+					<Typography variant="subtitle2">
+						{' '}
+						<b> Switch to Ropsten Network by clicking on the MetaMask icon above.</b>
 					</Typography>
 					<br />
 					<b>
