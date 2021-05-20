@@ -26,9 +26,9 @@ https://www.youtube.com/watch?v=9Qpi80dQsGU
 
 # Deployed Smart Contracts on Ropsten and BSC Testnet
 Contract Addresses
-  1. SimpleStorage.sol: 0x9693A8E5Cd60DE58cF8520B151f51EaF73cBAa43
-  2. callSimpleStorage.sol: 0x143e771DA912Cf985Ec0727172bECB0d4bD79434
-  3. annoyAttendance.sol: 0x89a38bdaeeD114EB1b063D078933508Fc4D145d6
+  1. SimpleStorage.sol: 0x9693A8E5Cd60DE58cF8520B151f51EaF73cBAa43 ([ETH](https://ropsten.etherscan.io/address/0x9693A8E5Cd60DE58cF8520B151f51EaF73cBAa43) | [BSC](https://testnet.bscscan.com/address/0x9693A8E5Cd60DE58cF8520B151f51EaF73cBAa43))
+  2. callSimpleStorage.sol: 0x143e771DA912Cf985Ec0727172bECB0d4bD79434 ([ETH](https://ropsten.etherscan.io/address/0x143e771DA912Cf985Ec0727172bECB0d4bD79434) | [BSC](https://testnet.bscscan.com/address/0x143e771DA912Cf985Ec0727172bECB0d4bD79434))
+  3. annoyAttendance.sol: 0x89a38bdaeeD114EB1b063D078933508Fc4D145d6 ([ETH](https://ropsten.etherscan.io/address/0x89a38bdaeeD114EB1b063D078933508Fc4D145d6) | [BSC](https://testnet.bscscan.com/address/0x89a38bdaeeD114EB1b063D078933508Fc4D145d6))
 
 # Steps to integrate into the Demo Frontend.
 (1) After contract deployment , import the json output file in the '''contracts''' folder.
