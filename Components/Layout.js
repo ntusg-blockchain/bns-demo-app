@@ -1,15 +1,14 @@
 import React from 'react';
 import { Header, Footer } from '../Components/Layouts';
 import Head from 'next/head';
-import { Paper, Switch, CircularProgress } from '@material-ui/core';
+import { Paper, CircularProgress } from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import red from '@material-ui/core/colors/red';
-import InvertColorsSharpIcon from '@material-ui/icons/InvertColorsSharp';
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const Layout = (props) => {
-	const [ darkMode, setDarkMode ] = useState(true);
+	const [ darkMode, setDarkMode ] = useState(props.themeMode);
 	const [ loading, setLoading ] = useState(true);
 
 	// It will be executed before rendering
@@ -22,7 +21,7 @@ const Layout = (props) => {
 				main: '#2b2e3b'
 			},
 			secondary: {
-				main: '#19857b'
+				main: '#ffc107'
 			},
 			error: {
 				main: red.A400
@@ -37,7 +36,6 @@ const Layout = (props) => {
 			}
 		}
 	});
-
 	const lightTheme = createMuiTheme({
 		palette: {
 			type: 'light',
@@ -63,6 +61,13 @@ const Layout = (props) => {
 		};
 	}, []);
 
+	useEffect(() => {
+		// KIV
+		if( props.themeMode !== false){
+			setDarkMode(true);
+		}
+	  }, [props.themeMode]);
+
 	if (loading == true) {
 		return (
 			<div
@@ -81,9 +86,10 @@ const Layout = (props) => {
 		);
 	} else {
 		console.log = console.warn = console.error = () => {};
+		// if darkmode true = dark theme , if false light.
 		return (
-			<div>
-				<ThemeProvider theme={darkMode ? lightTheme : darkTheme}>
+			<div >
+				<ThemeProvider theme={darkMode ? darkTheme : lightTheme }>
 					<Head>
 						<html lang="en" />
 						<link rel="shortcut icon" href="static/favicon.ico"   as={ process.env.BACKEND_URL + '/'}/>
@@ -104,7 +110,6 @@ const Layout = (props) => {
 									margin: 0;
 							`}</style>
 						<br />
-
 						<Footer children={props.children} />
 					</Paper>
 				</ThemeProvider>

@@ -28,14 +28,32 @@ class Integerstorage extends React.Component {
 		metamaskEnabled: false,
 		loading: false,
 		contractAddress: '',
-		transactionURL: ''
+		transactionURL: '',
+		networkID: '',
+		darkTheme: false,
+		etherscanLink : '',
+		faucetlink:'',
+		networkName:''
 	};
 
 	async componentDidMount() {
 		try {
 			const { accounts, contract, web3 } = this.props;
-			const value = await contract.methods.get().call({ from: accounts[0] });
-			const balanceInWei = await web3.eth.getBalance(accounts[0]);
+			let value = await contract.methods.get().call({ from: accounts[0] });
+			let balanceInWei = await web3.eth.getBalance(accounts[0]);
+			let networkID = await web3.eth.net.getId();
+			if ( networkID === 3 ) {
+				this.setState({ darkTheme : false });
+				this.setState({ etherscanLink : 'https://ropsten.etherscan.io/address/' });
+				this.setState({ faucetlink : "https://faucet.metamask.io/" });
+				this.setState({ networkName : "Ropsten Testnet" });
+			} else { 
+				this.setState({ darkTheme : true });
+				this.setState({ etherscanLink : 'https://testnet.bscscan.com/address/' });
+				this.setState({ faucetlink : "https://testnet.binance.org/faucet-smart" });
+				this.setState({ networkName : "Binance Smart Chain Testnet" });
+			}
+			this.setState({ networkID });
 			this.setState({ ethBalance: balanceInWei / 1e18, contractAddress: contract._address });
 			this.setState({ value });
 		} catch (error) {
@@ -51,8 +69,13 @@ class Integerstorage extends React.Component {
 		try {
 			let result = await contract.methods.set(this.state.setvalue).send({ from: accounts[0] });
 			result = result.transactionHash;
-			let string = `https://ropsten.etherscan.io/tx/${result}`;
-			this.setState({ transactionURL: string });
+			let returnString;
+			if (this.state.networkID === 3 ) {
+				returnString = `https://ropsten.etherscan.io/tx/${result}`;
+			} else {
+				returnString = `https://testnet.bscscan.com/tx/${result}`;
+			}
+			this.setState({ transactionURL: returnString });
 		} catch (err) {
 			alert(`Error`);
 			this.setState({ loading: false });
@@ -92,10 +115,11 @@ class Integerstorage extends React.Component {
 		this.setState({ transactionURL: '' });
 		//window.location.reload(true);
 	};
+// 	{this.state.transactionURL.replace('https://ropsten.etherscan.io/tx/', '')}
 
 	render() {
 		return (
-			<Layout>
+			<Layout themeMode={this.state.darkTheme}>
 				<Dialog
 					onClose={this.handleClose}
 					aria-labelledby="customized-dialog-title"
@@ -106,13 +130,12 @@ class Integerstorage extends React.Component {
 						<DialogContentText>
 							Click to view the-
 							<a rel="noopener noreferrer" href={this.state.transactionURL} target="_blank">
-								Transaction Link @ Etherscan
+								Transaction
 							</a>
 						</DialogContentText>
-						{this.state.transactionURL.replace('https://ropsten.etherscan.io/tx/', '')}
 					</DialogContent>
 					<DialogActions>
-						<Button onClick={this.handleClose} color="primary">
+						<Button onClick={this.handleClose} color="textPrimary">
 							Close
 						</Button>
 					</DialogActions>
@@ -121,7 +144,18 @@ class Integerstorage extends React.Component {
 					<Typography style={{ paddingBottom: '30px' }} variant="h4" color="textPrimary" gutterBottom>
 						Integer storage Dapp
 					</Typography>
+					<p> Click on the browser network MetaMask to switch network.</p>
+
+					<Card variant="outlined">
+						<CardContent>
+							<Typography variant="h6" color="textPrimary">
+							Current Network : <b> {this.state.networkName} </b>
+							</Typography>
+						</CardContent>
+					</Card>
+
 					<p>
+						{' '}
 						{' '}
 						Click <b>Enable MetaMask</b> to Sign in before using the Dapp{' '}
 					</p>
@@ -140,7 +174,7 @@ class Integerstorage extends React.Component {
 						Contract Address :{' '}
 						<Link
 							color="inherit"
-							href={'https://ropsten.etherscan.io/address/' + this.state.contractAddress}
+							href={this.state.etherscanLink + this.state.contractAddress}
 							target="_blank"
 							rel="noopener noreferrer"
 						>
@@ -178,11 +212,11 @@ class Integerstorage extends React.Component {
 					<br />
 					<b>
 						{' '}
-						Request Ropsten ETH from{' '}
+						Request network token from{' '}
 						<Link
 							target="_blank"
 							color="inherit"
-							href="https://faucet.metamask.io/"
+							href={this.state.faucetlink}
 							rel="noopener noreferrer"
 						>
 							<a>
@@ -190,7 +224,7 @@ class Integerstorage extends React.Component {
 								<u>Faucet</u>{' '}
 							</a>
 						</Link>
-						to interact with the contract if your ETH Balance is Zero. {' '}
+						to interact with the contract if your Balance is Zero. {' '}
 					</b>
 					<Typography
 						style={{ paddingTop: '30px', paddingBottom: '30px' }}
@@ -198,10 +232,10 @@ class Integerstorage extends React.Component {
 						color="textPrimary"
 						gutterBottom
 					>
-						Ropsten ETH Balance: {this.state.ethBalance}
+						User Balance: {this.state.ethBalance}
 					</Typography>
 					<p>
-						Click on <b> Refresh Balance</b> to see the deduction of ETH after interacting with the Smart
+						Click on <b> Refresh Balance</b> to see the deduction of token balance after interacting with the Smart
 						Contract
 					</p>
 					<Button style={{ float: 'right' }} variant="contained" color="primary" onClick={this.getEthBalance}>
@@ -237,7 +271,7 @@ class Integerstorage extends React.Component {
 					<br />
 					<br />
 					<br />
-					<BacktoHomepage />
+					<BacktoHomepage networkData ={this.state.networkID} />
 				</div>
 			</Layout>
 		);

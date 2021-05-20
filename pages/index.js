@@ -2,18 +2,18 @@ import React from 'react';
 import Layout from '../Components/Layout';
 import {
 	Button,
-	Link,
 	Dialog,
 	DialogActions,
 	DialogContent,
 	DialogContentText,
 	DialogTitle,
-	Typography
+	Typography,
+	Grid
 } from '@material-ui/core';
 
 class Index extends React.Component {
 	state = {
-		modalMode: true
+		modalMode: false
 	};
 
 	handleClose = () => {
@@ -22,7 +22,7 @@ class Index extends React.Component {
 	};
 	render() {
 		return (
-			<Layout>
+			<Layout themeMode={false}>
 				<Dialog
 					fullWidth={true}
 					maxWidth="md"
@@ -75,101 +75,61 @@ class Index extends React.Component {
 					<Typography style={{ padding: '20px' }} variant="h4">
 						Welcome to Blockchain@NTU Dapps.{' '}
 					</Typography>
-
+					<br />
 					<Typography variant="subtitle1">
 						{' '}
 						Dapps are built for educational and demonstration purposes only.{' '}
 						<p>
-							💖🦄🌈{' '}
-							<p>
-								Watch this{' '}
-								<Button color="subtitle1" href="/quickguide" disableRipple rel="noopener noreferrer">
-									<b>
-										<u> Quick Guide</u>
-									</b>
-								</Button>{' '}
-								to setup your <b style={{ backgroundColor: 'lightblue' }}> Ropsten MetaMask account.</b>
-							</p>{' '}
+							💻📦🌈📦🌈📦💻 <Typography variant="subtitle1"> Choose the following Testnet</Typography>
+							<br />
+							<Grid container spacing={2}>
+								<Grid item xs>
+									<Button
+										variant="contained"
+										style={{ width: '100%' }}
+										color="subtitle1"
+										href="/ETHropsten"
+										disableRipple
+										rel="noopener noreferrer"
+									>
+										<img
+											style={{ width: '5vh', height: '6vh' }}
+											src="static/ethereum-eth-logo.svg"
+											alt="BNB SVG"
+										/>
+										<b>
+										 Ropsten Testnet
+										</b>
+									</Button>
+								</Grid>
+								<Grid item xs style={{ width: '100%' }}>
+									<Button
+										variant="contained"
+										style={{ width: '100%' }}
+										color="subtitle1"
+										href="/BSCtestnet"
+										disableRipple
+										rel="noopener noreferrer"
+									>
+										<img
+											style={{ width: '5vh', height: '6vh', marginRight: '5px' }}
+											src="static/binance-coin-bnb-logo.svg"
+											alt="BNB SVG"
+										/> 
+										<b>
+										 BSC Testnet
+										</b>
+									</Button>{' '}
+								</Grid>
+							</Grid>{' '}
 						</p>
 					</Typography>
-
-					<Typography variant="subtitle2">
-						{' '}
-						To enjoy the best experience , please use Desktop browser and sign in with browser extension
-						Metamask.
-					</Typography>
-					<br />
-					<b>
-						{' '}
-						Follow this
-						<Button
-							color="subtitle1"
-							href="https://openattestation.com/docs/appendix/ropsten-setup"
-							target="_blank"
-							disableRipple
-							rel="noopener noreferrer"
-						>
-							<b>
-								<u>guide</u>
-							</b>
-						</Button>
-						to install Ropsten MetaMask.
-					</b>
-					<p>
-						{' '}
-						Request ETH from{' '}
-						<Button
-							color="subtitle1"
-							href="https://faucet.metamask.io/"
-							target="_blank"
-							disableRipple
-							rel="noopener noreferrer"
-						>
-							<b>
-								<u>Ropsten ETH Faucet</u>
-							</b>
-						</Button>
-						to experiment with the Dapps below. {' '}
-					</p>
-					<br />
-					<br />
-					<ul>
-						<li>
-							<Typography variant="subtitle1">
-								{' '}
-								<Button href="/integerstorage" as={ process.env.BACKEND_URL + '/integerstorage'} disableRipple rel="noopener noreferrer">
-									<u style={{ textTransform: 'none' }}> Integer Storage</u>
-								</Button>
-							</Typography>
-						</li>
-
-						<li>
-							<Typography variant="subtitle1">
-								{' '}
-								<Button href="/callIntegerStorage" as={ process.env.BACKEND_URL + '/callIntegerStorage'} disableRipple rel="noopener noreferrer">
-									<u style={{ textTransform: 'none' }}> Call Integer Storage</u>
-								</Button>
-							</Typography>
-						</li>
-
-						<li>
-							<Typography variant="subtitle1">
-								{' '}
-								<Button href="/attendanceTracker" as={ process.env.BACKEND_URL + '/attendanceTracker'} disableRipple rel="noopener noreferrer">
-									<u style={{ textTransform: 'none' }}> Attendance Tracker </u>
-								</Button>
-							</Typography>
-						</li>
-					</ul>
 				</div>
-				<br />
-				<br />
-				<br />
 				<br />
 				<br />
 				<Typography variant="h6">
 					<Button href="https://clubs.ntu.edu.sg/ntublockchain" disableRipple rel="noopener noreferrer">
-						<u style={{ textTransform: 'none' }}> Check out our Homepage. </u>
+						<u style={{ textTransform: 'none' }}> Check out our Official Club Website </u>
 					</Button>
 				</Typography>
 			</Layout>

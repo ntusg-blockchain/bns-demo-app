@@ -30,7 +30,13 @@ class Dapp extends React.Component {
 		loading: false,
 		contractAddress: '',
 		transactionURL: '',
-		originalAddress: ''
+		originalAddress: '',
+		networkID: '',
+		darkTheme: false,
+		etherscanLink : '',
+		faucetlink:'',
+		networkName:''
+
 	};
 
 	async componentDidMount() {
@@ -41,7 +47,19 @@ class Dapp extends React.Component {
 			let value = await contract.methods.getStorage().call({ from: accounts[0] });
 			let balanceInWei = await web3.eth.getBalance(accounts[0]);
 			let originalAddress = await contract.methods.simpleStorage_address().call({ from: accounts[0] });
-
+			let networkID = await web3.eth.net.getId();
+			if ( networkID === 3 ) {
+				this.setState({ darkTheme : false });
+				this.setState({ etherscanLink : 'https://ropsten.etherscan.io/address/' });
+				this.setState({ faucetlink : "https://faucet.metamask.io/" });
+				this.setState({ networkName : "Ropsten Testnet" });
+			} else { 
+				this.setState({ darkTheme : true });
+				this.setState({ etherscanLink : 'https://testnet.bscscan.com/address/' });
+				this.setState({ faucetlink : "https://testnet.binance.org/faucet-smart" });
+				this.setState({ networkName : "Binance Smart Chain Testnet" });
+			}
+		    this.setState({ networkID });
 			this.setState({ contractAddress: contract._address });
 			this.setState({ ethBalance: balanceInWei / 1e18 });
 			this.setState({ value, originalAddress });
@@ -53,12 +71,18 @@ class Dapp extends React.Component {
 	storeValue = async () => {
 		event.preventDefault();
 		this.setState({ loading: true });
-		const { accounts, contract } = this.props;
+		const { accounts, contract, networkID } = this.props;
 		try {
 			let result = await contract.methods.setStorage(this.state.setvalue).send({ from: accounts[0] });
 			result = result.transactionHash;
-			let string = `https://ropsten.etherscan.io/tx/${result}`;
-			this.setState({ transactionURL: string });
+			let returnString
+			if (networkID === 3 ) {
+				returnString = `https://ropsten.etherscan.io/tx/${result}`;
+			} else {
+				returnString = `https://testnet.bscscan.com/tx/${result}`;
+			}
+			
+			this.setState({ transactionURL: returnString });
 		} catch (err) {
 			alert(`Error`);
 			this.setState({ loading: false });
@@ -98,10 +122,10 @@ class Dapp extends React.Component {
 		this.setState({ transactionURL: '' });
 		//window.location.reload(true);
 	};
-
+// 						 { this.state.transactionURL.replace('https://ropsten.etherscan.io/tx/', '')}
 	render() {
 		return (
-			<Layout>
+			<Layout themeMode={this.state.darkTheme}>
 				<Dialog
 					onClose={this.handleClose}
 					aria-labelledby="customized-dialog-title"
@@ -112,10 +136,9 @@ class Dapp extends React.Component {
 						<DialogContentText>
 							Click to view the-
 							<a rel="noopener noreferrer" href={this.state.transactionURL} target="_blank">
-								Transaction Link @ Etherscan
+								Transaction
 							</a>
 						</DialogContentText>
-						{this.state.transactionURL.replace('https://ropsten.etherscan.io/tx/', '')}
 					</DialogContent>
 					<DialogActions>
 						<Button onClick={this.handleClose} color="primary">
@@ -132,7 +155,7 @@ class Dapp extends React.Component {
 					<Button
 						style={{ float: 'right' }}
 						variant="contained"
-						color="inherit"
+						color="secondary"
 						onClick={this.enableMetaMask}
 					>
 						Enable MetaMask
@@ -144,7 +167,7 @@ class Dapp extends React.Component {
 						Current Contract Address :{' '}
 						<Link
 							color="inherit"
-							href={'https://ropsten.etherscan.io/address/' + this.state.contractAddress}
+							href={this.state.etherscanLink + this.state.contractAddress}
 							target="_blank"
 							rel="noopener noreferrer"
 						>
@@ -173,7 +196,7 @@ class Dapp extends React.Component {
 						Integer Storage Contract Address :{' '}
 						<Link
 							color="inherit"
-							href={'https://ropsten.etherscan.io/address/' + this.state.originalAddress}
+							href={this.state.etherscanLink + this.state.originalAddress}
 							target="_blank"
 							rel="noopener noreferrer"
 						>
@@ -203,11 +226,11 @@ class Dapp extends React.Component {
 					<br />
 					<b>
 						{' '}
-						Request Ropsten ETH from{' '}
+						Request network token from{' '}
 						<Link
 							target="_blank"
 							color="inherit"
-							href="https://faucet.metamask.io/"
+							href={this.state.faucetlink}
 							rel="noopener noreferrer"
 						>
 							<a>
@@ -215,7 +238,7 @@ class Dapp extends React.Component {
 								<u>Faucet</u>{' '}
 							</a>
 						</Link>
-						to interact with the contract if your ETH Balance is Zero. {' '}
+						to interact with the contract if your Balance is Zero. {' '}
 					</b>
 					<Typography
 						style={{ paddingTop: '30px', paddingBottom: '30px' }}
@@ -223,7 +246,7 @@ class Dapp extends React.Component {
 						color="textPrimary"
 						gutterBottom
 					>
-						Ropsten ETH Balance: {this.state.ethBalance}
+						User Balance: {this.state.ethBalance}
 					</Typography>
 					<p>
 						Click on Refresh balance to see the deduction of ETH after interacting with the Smart Contract
@@ -264,7 +287,7 @@ class Dapp extends React.Component {
 					<br />
 					<br />
 					<br />
-					<BacktoHomepage />
+					<BacktoHomepage networkData ={this.state.networkID} />
 				</div>
 			</Layout>
 		);
