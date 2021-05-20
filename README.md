@@ -98,10 +98,12 @@ This simply wraps `web3.eth.getAccounts` into a Promise so we can use it cleanly
 https://material-ui.com/getting-started/
 
 # Nextjs
-https://nextjs.org/learn/basics/create-nextjs-app
+To learn more about Next.js, take a look at the following resources:
 
-# NextJs Github page setupReference 
-https://github.com/thierryc/Next-gh-page-example
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
 # License
 All files in this repository are released under the [GPLv3](https://github.com/ntusg-blockchain/bns-demo-app/blob/master/LICENSE) license.
