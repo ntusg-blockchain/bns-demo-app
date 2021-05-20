@@ -50,14 +50,6 @@ Run the following Command:
 
 ``` $ npm run dev ```
 
-Push to Master branch and publish on Github
-
-``` $ npm run githubDeploy1 ```
-https://github.com/ntusg-blockchain/bns-demo-app
-
-https://ntusg-blockchain.github.io/bns-demo-app
-
-
 # Bns Demo App
 
 - 1st demo is a getter and setter of an integer. To demonstrate state changes.
