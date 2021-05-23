@@ -151,7 +151,20 @@ class Dapp extends React.Component {
 					<Typography style={{ paddingBottom: '30px' }} variant="h4" color="textPrimary" gutterBottom>
 						Calling Integer storage Dapp
 					</Typography>
+					<p> Click on the browser network MetaMask to switch network.</p>
 
+					<Card variant="outlined">
+						<CardContent>
+							<Typography variant="h6" color="textPrimary">
+							Current Network : <b> {this.state.networkName} </b>
+							</Typography>
+						</CardContent>
+					</Card>
+
+					<p>
+						{' '}
+						Click <b>Enable MetaMask</b> to Sign in before using the Dapp{' '}
+					</p>
 					<Button
 						style={{ float: 'right' }}
 						variant="contained"

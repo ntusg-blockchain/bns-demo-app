@@ -31,9 +31,9 @@ class Dapp extends React.Component {
 		transactionURL: '',
 		networkID: '',
 		darkTheme: false,
-		etherscanLink : '',
-		faucetlink:'',
-		networkName:''
+		etherscanLink: '',
+		faucetlink: '',
+		networkName: ''
 	};
 
 	async componentDidMount() {
@@ -43,16 +43,16 @@ class Dapp extends React.Component {
 			const balanceInWei = await web3.eth.getBalance(accounts[0]);
 			const AttendeeCount = await contract.methods.getAttendeeCount().call({ from: accounts[0] });
 			let networkID = await web3.eth.net.getId();
-			if ( networkID === 3 ) {
-				this.setState({ darkTheme : false });
-				this.setState({ etherscanLink : 'https://ropsten.etherscan.io/address/' });
-				this.setState({ faucetlink : "https://faucet.metamask.io/" });
-				this.setState({ networkName : "Ropsten Testnet" });
-			} else { 
-				this.setState({ darkTheme : true });
-				this.setState({ etherscanLink : 'https://testnet.bscscan.com/address/' });
-				this.setState({ faucetlink : "https://testnet.binance.org/faucet-smart" });
-				this.setState({ networkName : "Binance Smart Chain Testnet" });
+			if (networkID === 3) {
+				this.setState({ darkTheme: false });
+				this.setState({ etherscanLink: 'https://ropsten.etherscan.io/address/' });
+				this.setState({ faucetlink: 'https://faucet.metamask.io/' });
+				this.setState({ networkName: 'Ropsten Testnet' });
+			} else {
+				this.setState({ darkTheme: true });
+				this.setState({ etherscanLink: 'https://testnet.bscscan.com/address/' });
+				this.setState({ faucetlink: 'https://testnet.binance.org/faucet-smart' });
+				this.setState({ networkName: 'Binance Smart Chain Testnet' });
 			}
 			this.setState({ networkID });
 			this.setState({ AttendeeCount: AttendeeCount, contractAddress: contract._address });
@@ -66,12 +66,12 @@ class Dapp extends React.Component {
 	storeValue = async () => {
 		event.preventDefault();
 		this.setState({ signLoading: true });
-		const { accounts, contract , networkID } = this.props;
+		const { accounts, contract, networkID } = this.props;
 		try {
 			let result = await contract.methods.signIn().send({ from: accounts[0], value: 100000000000000000 });
 			result = result.transactionHash;
 			let returnString;
-			if (this.state.networkID === 3 ) {
+			if (this.state.networkID === 3) {
 				returnString = `https://ropsten.etherscan.io/tx/${result}`;
 			} else {
 				returnString = `https://testnet.bscscan.com/tx/${result}`;
@@ -89,12 +89,12 @@ class Dapp extends React.Component {
 	burnValue = async () => {
 		event.preventDefault();
 		this.setState({ burnLoading: true });
-		const { accounts, contract,networkID } = this.props;
+		const { accounts, contract, networkID } = this.props;
 		try {
 			let result = await contract.methods.signOut().send({ from: accounts[0] });
 			result = result.transactionHash;
 			let returnString;
-			if (this.state.networkID === 3 ) {
+			if (this.state.networkID === 3) {
 				returnString = `https://ropsten.etherscan.io/tx/${result}`;
 			} else {
 				returnString = `https://testnet.bscscan.com/tx/${result}`;
@@ -141,7 +141,7 @@ class Dapp extends React.Component {
 		this.setState({ transactionURL: '' });
 		//window.location.reload(true);
 	};
-// 						{this.state.transactionURL.replace('https://ropsten.etherscan.io/tx/', '')}
+	// 						{this.state.transactionURL.replace('https://ropsten.etherscan.io/tx/', '')}
 	render() {
 		return (
 			<Layout themeMode={this.state.darkTheme}>
@@ -169,6 +169,19 @@ class Dapp extends React.Component {
 					<Typography style={{ paddingBottom: '30px' }} variant="h4" color="textPrimary" gutterBottom>
 						Attendance Tracker Dapp
 					</Typography>
+					<p> Click on the browser network MetaMask to switch network.</p>
+					<Card variant="outlined">
+						<CardContent>
+							<Typography variant="h6" color="textPrimary">
+								Current Network : <b> {this.state.networkName} </b>
+							</Typography>
+						</CardContent>
+					</Card>
+					<p>
+						{' '}
+						Click <b>Enable MetaMask</b> to Sign in before using the Dapp{' '}
+					</p>
+					s
 					<Button
 						style={{ float: 'right' }}
 						variant="contained"
@@ -233,12 +246,7 @@ class Dapp extends React.Component {
 					<b>
 						{' '}
 						Request network token from{' '}
-						<Link
-							target="_blank"
-							color="inherit"
-							href={this.state.faucetlink}
-							rel="noopener noreferrer"
-						>
+						<Link target="_blank" color="inherit" href={this.state.faucetlink} rel="noopener noreferrer">
 							<a>
 								{' '}
 								<u>Faucet</u>{' '}
@@ -254,7 +262,9 @@ class Dapp extends React.Component {
 					>
 						User Balance: {this.state.ethBalance}
 					</Typography>
-					<p>Click on refresh value to see the changes in Balance after interacting with the Smart Contract</p>
+					<p>
+						Click on refresh value to see the changes in Balance after interacting with the Smart Contract
+					</p>
 					<Button style={{ float: 'right' }} variant="contained" color="primary" onClick={this.getEthBalance}>
 						Refresh balance
 					</Button>
@@ -295,7 +305,7 @@ class Dapp extends React.Component {
 					<br />
 					<br />
 					<br />
-					<BacktoHomepage networkData ={this.state.networkID} />
+					<BacktoHomepage networkData={this.state.networkID} />
 				</div>
 				<br />
 			</Layout>
