@@ -94,16 +94,17 @@ This function requires `web3` to be passed in. It uses `truffle-contract` to ini
 
 This simply wraps `web3.eth.getAccounts` into a Promise so we can use it cleanly inside `Web3Container.js`. You probably don't need to change anything in this file.
 
-# Material-UI
+# Reference
+## ChainList
+https://chainlist.org/
+## Materiaul-UI
 https://material-ui.com/getting-started/
 
-# Nextjs
-To learn more about Next.js, take a look at the following resources:
+## Nextjs
+https://nextjs.org/learn/basics/create-nextjs-app
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# NextJs Github page setupReference 
+https://github.com/thierryc/Next-gh-page-example
 
 # License
 All files in this repository are released under the [GPLv3](https://github.com/ntusg-blockchain/bns-demo-app/blob/master/LICENSE) license.

@@ -76,7 +76,7 @@ class Dapp extends React.Component {
 			let result = await contract.methods.setStorage(this.state.setvalue).send({ from: accounts[0] });
 			result = result.transactionHash;
 			let returnString
-			if (networkID === 3 ) {
+			if (this.state.networkID === 3 ) {
 				returnString = `https://ropsten.etherscan.io/tx/${result}`;
 			} else {
 				returnString = `https://testnet.bscscan.com/tx/${result}`;

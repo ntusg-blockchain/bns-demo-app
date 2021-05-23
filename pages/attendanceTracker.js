@@ -71,7 +71,7 @@ class Dapp extends React.Component {
 			let result = await contract.methods.signIn().send({ from: accounts[0], value: 100000000000000000 });
 			result = result.transactionHash;
 			let returnString;
-			if (networkID === '3' ) {
+			if (this.state.networkID === 3 ) {
 				returnString = `https://ropsten.etherscan.io/tx/${result}`;
 			} else {
 				returnString = `https://testnet.bscscan.com/tx/${result}`;
@@ -94,12 +94,12 @@ class Dapp extends React.Component {
 			let result = await contract.methods.signOut().send({ from: accounts[0] });
 			result = result.transactionHash;
 			let returnString;
-			if (networkID === '3' ) {
+			if (this.state.networkID === 3 ) {
 				returnString = `https://ropsten.etherscan.io/tx/${result}`;
 			} else {
 				returnString = `https://testnet.bscscan.com/tx/${result}`;
 			}
-			this.setState({ transactionURL: returnString});
+			this.setState({ transactionURL: returnString });
 		} catch (err) {
 			alert(`Error`);
 			this.setState({ burnLoading: false });
