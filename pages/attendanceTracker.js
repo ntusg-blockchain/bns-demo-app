@@ -181,7 +181,7 @@ class Dapp extends React.Component {
 						{' '}
 						Click <b>Enable MetaMask</b> to Sign in before using the Dapp{' '}
 					</p>
-					s
+					
 					<Button
 						style={{ float: 'right' }}
 						variant="contained"
